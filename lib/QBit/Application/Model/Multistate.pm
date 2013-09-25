@@ -201,10 +201,6 @@ sub check_multistate_flag {
     return !!(($multistate || 0) & (2**$bits_hs->{'bit'}));
 }
 
-sub check_mulistate_flag {
-    &check_multistate_flag;
-}
-
 sub get_multistate_actions {
     my ($self, $multistate) = @_;
 
