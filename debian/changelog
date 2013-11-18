@@ -1,3 +1,11 @@
+libqbit-application-model-multistate-perl (0.002) raring; urgency=low
+
+  * Add __EMPTY__ multistate to __BIT__ package_stash.
+
+  * Removed alias with misspell
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Mon, 18 Nov 2013 18:54:52 +0400
+
 libqbit-application-model-multistate-perl (0.001) raring; urgency=low
 
   * Initial commit
