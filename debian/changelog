@@ -1,3 +1,9 @@
+libqbit-application-model-multistate-perl (0.003) raring; urgency=low
+
+  * Rollback pull request
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Tue, 19 Nov 2013 18:09:52 +0400
+
 libqbit-application-model-multistate-perl (0.002) raring; urgency=low
 
   * Add __EMPTY__ multistate to __BIT__ package_stash.
