@@ -24,9 +24,7 @@ sub multistates_graph {
 
     $pkg_stash->{'__EMPTY_NAME__'} = $meta{'empty_name'} || gettext('Start status');
 
-    $pkg_stash->{'__BITS__'} =
-      [map {[shift(@$_), shift(@$_), {@$_}]}
-          ([__EMPTY__ => $pkg_stash->{'__EMPTY_NAME__'}], @{$meta{'multistates'} || []})];
+    $pkg_stash->{'__BITS__'} = [map {[shift(@$_), shift(@$_), {@$_}]} @{$meta{'multistates'} || []}];
 
     $pkg_stash->{'__BITS_HS__'} =
       {map {$_->[0] => {bit => $bit_num++, description => $_->[1], opts => $_->[2]}} @{$pkg_stash->{'__BITS__'}}};
