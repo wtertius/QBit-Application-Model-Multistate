@@ -84,28 +84,26 @@ sub multistates_graph {
         }
     }
 
-    {
-        # Check the multistates graph for unreachable statuses.
+    # Check the multistates graph for unreachable statuses.
 
-        my @unreachable;
-        foreach my $multistate_name (keys(%{$pkg_stash->{'__BITS_HS__'}})) {
-            my $multistate = $pkg_stash->{'__BITS_HS__'}{$multistate_name};
+    my @unreachable;
+    foreach my $multistate_name (keys(%{$pkg_stash->{'__BITS_HS__'}})) {
+        my $multistate = $pkg_stash->{'__BITS_HS__'}{$multistate_name};
 
-            my $exists = $pkg_stash->{'__MULTISTATES__'}{$multistate->{'bit'}};
-            unless ($exists) {
-                foreach (keys(%{$pkg_stash->{'__MULTISTATES__'}})) {
-                    if (($_ & 2**$multistate->{'bit'})) {
-                        $exists = TRUE;
-                        last;
-                    }
+        my $exists = $pkg_stash->{'__MULTISTATES__'}{$multistate->{'bit'}};
+        unless ($exists) {
+            foreach (keys(%{$pkg_stash->{'__MULTISTATES__'}})) {
+                if (($_ & 2**$multistate->{'bit'})) {
+                    $exists = TRUE;
+                    last;
                 }
             }
-            push(@unreachable, $multistate_name) unless $exists;
         }
-
-        throw sprintf("Unreachable status(es) in package '$package': '%s'.", join(q{', '}, @unreachable)),
-          if @unreachable;
+        push(@unreachable, $multistate_name) unless $exists;
     }
+
+    throw gettext("Unreachable status(es) in package '$package': '%s'.", join(q{', '}, @unreachable)),
+      if @unreachable;
 }
 
 sub get_empty_name {
