@@ -29,8 +29,7 @@ sub multistates_graph {
           ([__EMPTY__ => $pkg_stash->{'__EMPTY_NAME__'}], @{$meta{'multistates'} || []})];
 
     $pkg_stash->{'__BITS_HS__'} =
-      {map {$_->[0] => {bit => $bit_num++, description => $_->[1], opts => $_->[2]}}
-          @{$pkg_stash->{'__BITS__'}}[1 .. $#{$pkg_stash->{'__BITS__'}}]};
+      {map {$_->[0] => {bit => $bit_num++, description => $_->[1], opts => $_->[2]}} @{$pkg_stash->{'__BITS__'}}};
 
     $pkg_stash->{'__ACTIONS__'} = {};
     my %actions = (%{$meta{'actions'} || {}}, %{$meta{'right_actions'} || {}});
