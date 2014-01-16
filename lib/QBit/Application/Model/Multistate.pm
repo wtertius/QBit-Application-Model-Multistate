@@ -87,23 +87,24 @@ sub multistates_graph {
     {
         # Check the multistates graph for unreachable statuses.
 
-        my @bits = reverse sort {$a <=> $b} grep {$_ > 0} map {$_->{'bit'}} values %{$pkg_stash->{'__BITS_HS__'}};
-        my $full_mask = 0;
-        $full_mask += 2**$_ foreach @bits;
-        my $mask = $full_mask;
-        foreach my $multistate (keys %{$pkg_stash->{'__MULTISTATES__'}}) {
-            $mask &= ($full_mask - $multistate);
+        my @unreachable;
+        foreach my $multistate_name (keys(%{$pkg_stash->{'__BITS_HS__'}})) {
+            my $multistate = $pkg_stash->{'__BITS_HS__'}{$multistate_name};
+
+            my $exists = $pkg_stash->{'__MULTISTATES__'}{$multistate->{'bit'}};
+            unless ($exists) {
+                foreach (keys(%{$pkg_stash->{'__MULTISTATES__'}})) {
+                    if (($_ & 2**$multistate->{'bit'})) {
+                        $exists = TRUE;
+                        last;
+                    }
+                }
+            }
+            push(@unreachable, $multistate_name) unless $exists;
         }
 
-        if ($mask > 1) {
-            my %bits = map {$_ => TRUE} grep {$mask >= 2**$_ && defined($mask -= 2**$_)} @bits;
-            throw Exception::Multistate sprintf(
-                "Unreachable status(es) in package '$package': '%s'.",
-                join(q{', '},
-                    grep {exists($bits{$pkg_stash->{'__BITS_HS__'}{$_}{'bit'}})}
-                      keys %{$pkg_stash->{'__BITS_HS__'}})
-            );
-        }
+        throw sprintf("Unreachable status(es) in package '$package': '%s'.", join(q{', '}, @unreachable)),
+          if @unreachable;
     }
 }
 
