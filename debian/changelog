@@ -1,3 +1,19 @@
+libqbit-application-model-multistate-perl (0.004) raring; urgency=low
+
+  * Fix coding style and use gettext.
+
+  * Simplify the unreachable statuse check.
+
+  * Exclude __EMPTY__ state from check.
+
+  * Revert old wrong change.
+
+  * Die if there are unreachable statuses.
+
+  * Do not shift __BIT_HS__ by empty state.
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Thu, 23 Jan 2014 15:10:55 +0400
+
 libqbit-application-model-multistate-perl (0.003) raring; urgency=low
 
   * Rollback pull request
