@@ -1,3 +1,9 @@
+libqbit-application-model-multistate-perl (0.005) raring; urgency=low
+
+  * Removed smartmatching
+
+ -- Sergei Svistunov <sergei-svistunov@yandex.ru>  Sun, 27 Apr 2014 20:19:37 +0400
+
 libqbit-application-model-multistate-perl (0.004) raring; urgency=low
 
   * Fix coding style and use gettext.
