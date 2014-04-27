@@ -56,10 +56,10 @@ sub multistates_graph {
     __PACKAGE__->register_rights([\%right_group]);
 
     $pkg_stash->{'__MULTISTATES__'} = {0 => {}};
-    my @prev_multistates;
+    my $prev_multistates_cnt;
 
-    while (!@prev_multistates || !(\@prev_multistates ~~ [sort keys(%{$pkg_stash->{'__MULTISTATES__'}})])) {
-        @prev_multistates = sort keys(%{$pkg_stash->{'__MULTISTATES__'}});
+    while (!$prev_multistates_cnt || $prev_multistates_cnt != keys(%{$pkg_stash->{'__MULTISTATES__'}})) {
+        $prev_multistates_cnt = keys(%{$pkg_stash->{'__MULTISTATES__'}});
         foreach my $action (@{$meta{'multistate_actions'} || []}) {
             $action->{'action'} = $action->{'action'};
 
