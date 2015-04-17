@@ -1,3 +1,9 @@
+libtertiusqbit-application-model-multistate-perl (0.006) raring; urgency=low
+
+  * Rename debian package
+
+ -- Dmitry Lukiyanchuk <tertius@yandex-team.ru>  Fri, 17 Apr 2015 17:47:59 +0300
+
 libtertiusqbit-application-model-multistate-perl (0.005) raring; urgency=low
 
   * Removed smartmatching
